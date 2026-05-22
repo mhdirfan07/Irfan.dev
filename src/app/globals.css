@@ -57,3 +57,245 @@
     border-radius: 0;
   }
 }
+
+/* ─── Parallax System ────────────────────────────────────── */
+@layer components {
+  /* Container: fills entire viewport */
+  .parallax-container {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: var(--color-background);
+    z-index: 1;
+  }
+
+  /* Each section fills the viewport */
+  .parallax-section {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform, opacity;
+  }
+
+  .parallax-section__inner {
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 64px; /* Account for fixed header h-16 */
+    padding-bottom: 96px; /* Safe space for mobile bottom bar/fixed UI */
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    background-color: var(--color-background);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  @media (min-width: 769px) {
+    .parallax-section__inner {
+      padding-bottom: 48px; /* Less padding on desktop */
+    }
+  }
+
+  .parallax-section__inner::-webkit-scrollbar {
+    width: 4px;
+  }
+  .parallax-section__inner::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .parallax-section__inner::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 0;
+  }
+
+  /* ─── Section Indicator (Right Side Dots) ──────────── */
+  .parallax-indicator {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 50;
+    align-items: flex-end;
+  }
+
+  .parallax-indicator__dot {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--color-muted);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .parallax-indicator__dot:hover {
+    border-color: var(--color-foreground);
+    transform: scale(1.3);
+  }
+
+  .parallax-indicator__dot--active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    width: 12px;
+    height: 12px;
+  }
+
+  .parallax-indicator__label {
+    position: absolute;
+    right: 24px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted);
+    opacity: 0;
+    transform: translateX(8px);
+    transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    pointer-events: none;
+  }
+
+  .parallax-indicator__dot:hover .parallax-indicator__label,
+  .parallax-indicator__label--visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .parallax-indicator__label--visible {
+    color: var(--color-accent);
+  }
+
+  /* ─── Progress Bar (Left Side) ─────────────────────── */
+  .parallax-progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100vh;
+    height: 100dvh;
+    background-color: var(--color-border);
+    z-index: 50;
+    opacity: 0.6;
+  }
+
+  .parallax-progress__bar {
+    width: 100%;
+    background: linear-gradient(
+      180deg,
+      var(--color-accent) 0%,
+      color-mix(in srgb, var(--color-accent) 60%, transparent) 100%
+    );
+    border-radius: 0 0 2px 2px;
+  }
+
+  /* ─── Section Counter (Bottom Left) ────────────────── */
+  .parallax-counter {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    z-index: 50;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .parallax-counter__current {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-foreground);
+    display: inline-block;
+  }
+
+  .parallax-counter__separator {
+    margin: 0 4px;
+    font-weight: 300;
+    opacity: 0.4;
+  }
+
+  .parallax-counter__total {
+    font-weight: 400;
+    opacity: 0.5;
+  }
+
+  /* ─── Scroll Hint (Bottom Center) ──────────────────── */
+  .parallax-scroll-hint {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 50;
+    color: var(--color-muted);
+  }
+
+  .parallax-scroll-hint__mouse {
+    opacity: 0.6;
+  }
+
+  .parallax-scroll-hint__text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.5;
+  }
+
+  /* ─── Mobile Responsive ────────────────────────────── */
+  @media (max-width: 768px) {
+    .parallax-indicator {
+      right: 12px;
+      gap: 12px;
+    }
+
+    .parallax-indicator__dot {
+      width: 8px;
+      height: 8px;
+    }
+
+    .parallax-indicator__dot--active {
+      width: 10px;
+      height: 10px;
+    }
+
+    .parallax-indicator__label {
+      display: none;
+    }
+
+    .parallax-counter {
+      bottom: 12px;
+      left: 12px;
+    }
+
+    .parallax-counter__current {
+      font-size: 16px;
+    }
+
+    .parallax-scroll-hint {
+      bottom: 12px;
+    }
+
+    .parallax-progress {
+      width: 2px;
+    }
+  }
+}
