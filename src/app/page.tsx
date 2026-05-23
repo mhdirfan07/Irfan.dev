@@ -18,7 +18,7 @@ const SECTIONS = [
   { id: "hero", label: "HERO" },
   { id: "about", label: "ABOUT" },
   { id: "projects", label: "PROJECTS" },
-  { id: "projects-lab", label: "LAB" },
+  // { id: "projects-lab", label: "LAB" },
   { id: "contact", label: "CONTACT" },
   { id: "experience", label: "EXPERIENCE" },
   { id: "validation", label: "VALIDATION" },
@@ -69,9 +69,9 @@ export default function Home() {
               </section>
 
               {/* 3: Project Lab */}
-              <section id="projects-lab">
+              {/* <section id="projects-lab">
                 <ProjectGrid />
-              </section>
+              </section> */}
 
               {/* 4: Contact / CTA */}
               <section id="contact">

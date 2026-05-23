@@ -10,8 +10,9 @@ export default function WorkHistory() {
       company: "ARANUS_TECH",
       subtitle: "/ PERSEVERANCE_TECH",
       title: "SOFTWARE_ENGINEER (PART_TIME)",
-      tags: ["NEXT.JS", "REACT", "NODE.JS", "TYPESCRIPT", "TAILWIND"],
+      tags: ["C++", "GTK", "LVGL" ,"NEXT.JS", "REACT", "NODE.JS", "TYPESCRIPT", "TAILWIND"],
       logs: [
+        "> BUILD DESTOP APPS",
         "> BUILT_SCALABLE_WEB_APPS: PRODUCTION",
         "> FULLSTACK_DELIVERY: CONSISTENT",
         "> CLOUD_INTEGRATION: ACTIVE"

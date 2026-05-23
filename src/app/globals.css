@@ -56,6 +56,10 @@
     background-color: var(--color-background);
     border-radius: 0;
   }
+
+  .stroke-text {
+    -webkit-text-stroke: 1.5px var(--color-border);
+  }
 }
 
 /* ─── Parallax System ────────────────────────────────────── */
