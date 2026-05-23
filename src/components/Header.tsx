@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { useParallax } from "./ParallaxContainer";
-
+import Image from 'next/image';
 // Maps section index to which nav link should be active
 const SECTION_TO_NAV: Record<number, number> = {
   0: 1, // Hero → highlight About
@@ -34,7 +34,13 @@ export default function Header() {
     >
       {/* Logo */}
       <div className="flex items-center">
-        <img src="/icon.svg" alt="Logo" width={32} height={32} className="mr-1" />
+        <Image
+          src="/icon.svg" // Pastikan file ada di public/icon.svg
+          alt="Logo Irfn.dev"
+          width={32}
+          height={32}
+          className="mr-1"
+        />
         <button
           onClick={() => goToSection(0)}
           className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity text-[var(--color-foreground)]"
