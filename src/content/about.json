@@ -1,0 +1,53 @@
+{
+  "entity": "ENTITY: IRFN",
+  "status": "STATUS: AVAILABLE_FOR_HIRE",
+  "name": "MUHAMMAD\nIRFAN",
+  "role": "> SOFTWARE_ENGINEER / FULL_STACK_DEVELOPER",
+  "description": "An Informatics alumnus from the University of Bengkulu and a passionate Software Engineer with 1–2 years of hands-on experience building scalable web applications, and cloud-integrated systems. Currently contributing as a part-time engineer at Aranus Tech / Perseverance Tech, focused on delivering high-quality, performant solutions across the full development stack.",
+  "profileImage": "/images/profile3.png",
+  "specializations": [
+    {
+      "label": "WEB_DEV",
+      "icon": "Globe"
+    },
+    {
+      "label": "CLOUD_OPS",
+      "icon": "Cloud"
+    }
+  ],
+  "stats": [
+    {
+      "label": "YEARS_EXP",
+      "value": "1-2"
+    },
+    {
+      "label": "PROJECTS",
+      "value": "10+"
+    },
+    {
+      "label": "FOCUS",
+      "value": "FULL_STK"
+    }
+  ],
+  "skills": [
+    { "name": "C++", "icon": "Cpu" },
+    { "name": "GTK", "icon": "Layers" },
+    { "name": "LVGL", "icon": "Blocks" },
+    { "name": "HTML / CSS", "icon": "FileCode" },
+    { "name": "JavaScript", "icon": "Code2" },
+    { "name": "TypeScript", "icon": "Binary" },
+    { "name": "React", "icon": "Atom" },
+    { "name": "Next.js", "icon": "Globe" },
+    { "name": "Tailwind CSS", "icon": "Wind" },
+    { "name": "Node.js", "icon": "Terminal" },
+    { "name": "Express", "icon": "Cpu" },
+    { "name": "REST API", "icon": "Network" },
+    { "name": "PHP / Laravel", "icon": "Flame" },
+    { "name": "Google Cloud Run", "icon": "Cloud" },
+    { "name": "Google App Engine", "icon": "Layers" },
+    { "name": "Docker", "icon": "Boxes" },
+    { "name": "Git / GitHub", "icon": "GitBranch" },
+    { "name": "CI/CD", "icon": "Workflow" },
+    { "name": "Antigravity", "icon": "Cpu" }
+  ]
+}

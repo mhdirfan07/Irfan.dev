@@ -4,9 +4,18 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Terminal, ShieldCheck, RefreshCw, Cpu, HelpCircle } from "lucide-react";
 
-export default function Footer() {
+export default function Footer({ data }: { data: any }) {
   const [time, setTime] = useState("");
   const [uptime, setUptime] = useState(0);
+
+  const leftText = data?.leftText || "© 2025_IRFN.DEV — ALL_SYSTEMS_PRESERVED";
+  const centerText = data?.centerText || "IRFN.DEV";
+  const socialLinks = data?.socialLinks || [
+    { label: "GITHUB", url: "https://github.com/mhdirfan07" },
+    { label: "LINKEDIN", url: "https://www.linkedin.com/in/muhammad-irfan-0ba9b326b/" },
+    { label: "ABOUT", url: "#about" },
+    { label: "CONTACT", url: "#contact" }
+  ];
 
   useEffect(() => {
     const updateTime = () => {
@@ -103,10 +112,10 @@ export default function Footer() {
         >
           {/* Big outline text */}
           <h2 className="text-6xl sm:text-7xl md:text-9xl font-black uppercase tracking-tighter select-none font-sans text-transparent stroke-text opacity-15 dark:opacity-10">
-            IRFN.DEV
+            {centerText}
           </h2>
           <h2 className="absolute top-0 left-0 text-6xl sm:text-7xl md:text-9xl font-black uppercase tracking-tighter select-none font-sans text-[var(--color-foreground)] translate-x-1.5 -translate-y-1.5">
-            IRFN.DEV
+            {centerText}
           </h2>
         </motion.div>
         <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-muted)] mt-6">
@@ -117,37 +126,20 @@ export default function Footer() {
       {/* Bottom row: Footer Links & Copyright */}
       <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[var(--color-border)] z-10 w-full gap-4 mt-auto">
         <div className="font-mono text-[10px] text-[var(--color-muted)] uppercase tracking-widest text-center md:text-left">
-          &copy; 2025_IRFN.DEV — ALL_SYSTEMS_PRESERVED
+          {leftText}
         </div>
         <div className="flex flex-wrap justify-center gap-6 font-mono text-[10px] text-[var(--color-muted)] uppercase tracking-widest">
-          <a
-            href="https://github.com/mhdirfan07"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[var(--color-accent)] transition-colors"
-          >
-            GITHUB
-          </a>
-          <a
-            href="https://www.linkedin.com/in/muhammad-irfan-0ba9b326b/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[var(--color-accent)] transition-colors"
-          >
-            LINKEDIN
-          </a>
-          <a
-            href="#about"
-            className="hover:text-[var(--color-accent)] transition-colors"
-          >
-            ABOUT
-          </a>
-          <a
-            href="#contact"
-            className="hover:text-[var(--color-accent)] transition-colors"
-          >
-            CONTACT
-          </a>
+          {socialLinks.map((link: any, i: number) => (
+            <a
+              key={i}
+              href={link.url}
+              target={link.url.startsWith("http") ? "_blank" : "_self"}
+              rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="hover:text-[var(--color-accent)] transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

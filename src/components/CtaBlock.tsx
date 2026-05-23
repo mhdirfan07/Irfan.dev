@@ -4,15 +4,19 @@ import { motion } from "framer-motion";
 import { Download, Send, Globe, Cpu, Clock, Terminal } from "lucide-react";
 import { FadeIn } from "./AnimationHelpers";
 
-export default function CtaBlock() {
+export default function CtaBlock({ data }: { data: any }) {
+  const heading = data?.heading || "READY TO DISCUSS\nYOUR PROJECT?";
+  const email = data?.email || "mhdirfan1537@gmail.com";
+  const buttonText = data?.buttonText || "SEND_EMAIL";
+
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 bento-grid border-b border-[var(--color-border)] h-full">
       {/* Left Cell: Info & Diagnostics Panel */}
       <FadeIn direction="left">
         <div className="bento-cell flex flex-col justify-center p-8 md:p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-[var(--color-border)] bg-[var(--color-background)] h-full min-h-[400px]">
           <span className="font-mono text-xs text-[var(--color-muted)] uppercase tracking-widest mb-2">// INITIATE_COMMUNICATION</span>
-          <h2 className="text-3xl md:text-4xl font-bold uppercase leading-tight mb-8">
-            READY TO DISCUSS<br />YOUR PROJECT?
+          <h2 className="text-3xl md:text-4xl font-bold uppercase leading-tight mb-8 whitespace-pre-line">
+            {heading}
           </h2>
 
           {/* Diagnostic Info Panel */}
@@ -72,7 +76,7 @@ export default function CtaBlock() {
               <div className="flex flex-col gap-1.5 border-b border-[var(--color-border)] pb-4">
                 <span className="text-[var(--color-accent)]">irfn@dev:~$ <span className="text-[var(--color-foreground)]">cat info.json</span></span>
                 <span className="text-[var(--color-muted)]">{`{`}</span>
-                <span className="pl-4 text-[var(--color-muted)]">"email": <span className="text-green-500">"mhdirfan1537@gmail.com"</span>,</span>
+                <span className="pl-4 text-[var(--color-muted)]">"email": <span className="text-green-500">"{email}"</span>,</span>
                 <span className="pl-4 text-[var(--color-muted)]">"status": <span className="text-green-500">"open_to_work"</span>,</span>
                 <span className="pl-4 text-[var(--color-muted)]">"timezone": <span className="text-green-500">"GMT+7"</span></span>
                 <span className="text-[var(--color-muted)]">{`}`}</span>
@@ -81,13 +85,13 @@ export default function CtaBlock() {
               {/* Action Buttons */}
               <div className="flex flex-col gap-3.5 mt-2">
                 <motion.a
-                  href="mailto:mhdirfan.dev@gmail.com"
+                  href={`mailto:${email}`}
                   className="w-full h-12 bg-[var(--color-accent)] text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-3.5 shadow-sm cursor-pointer"
                   whileHover={{ scale: 1.02, opacity: 0.95 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <span>SEND_EMAIL</span>
+                  <span>{buttonText}</span>
                   <Send className="w-4 h-4" />
                 </motion.a>
 

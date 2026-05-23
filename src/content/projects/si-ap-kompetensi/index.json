@@ -1,0 +1,11 @@
+{
+  "title": "SiAP-KOMPETENSI",
+  "description": "Mengembangkan SiAP-Kompetensi, sebuah aplikasi web penilaian kompetensi yang dirancang untuk mengotomatisasi proses penilaian, pengunggahan eviden, dan perhitungan hasil secara otomatis. Sistem ini dilengkapi dashboard untuk operator, asesor, dan atasan guna mempermudah pengelolaan serta meningkatkan transparansi penilaian kompetensi.",
+  "coverImage": "/images/projects/si-ap-kompetensi/coverImage.png",
+  "category": "WEB",
+  "techStack": [
+    "LARAVEL",
+    "PHP",
+    "VUE.JS"
+  ]
+}

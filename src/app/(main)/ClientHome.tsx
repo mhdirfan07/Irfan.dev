@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ProjectGrid from "@/components/ProjectGrid";
 import CtaBlock from "@/components/CtaBlock";
 import WorkHistory from "@/components/WorkHistory";
 import ValidationLogs from "@/components/ValidationLogs";
@@ -18,14 +17,13 @@ const SECTIONS = [
   { id: "hero", label: "HERO" },
   { id: "about", label: "ABOUT" },
   { id: "projects", label: "PROJECTS" },
-  // { id: "projects-lab", label: "LAB" },
   { id: "contact", label: "CONTACT" },
   { id: "experience", label: "EXPERIENCE" },
   { id: "validation", label: "VALIDATION" },
   { id: "footer", label: "FOOTER" },
 ];
 
-export default function Home() {
+export default function ClientHome({ data }: { data: any }) {
   const [splashDone, setSplashDone] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -55,42 +53,37 @@ export default function Home() {
             <ParallaxContainer sections={SECTIONS}>
               {/* 0: Hero */}
               <section id="hero">
-                <Hero />
+                <Hero data={data.heroData} />
               </section>
 
               {/* 1: About */}
               <section id="about">
-                <AboutSection />
+                <AboutSection data={data.aboutData} />
               </section>
 
               {/* 2: Projects */}
               <section id="projects">
-                <ProjectsSection />
+                <ProjectsSection data={data.projectsData} />
               </section>
-
-              {/* 3: Project Lab */}
-              {/* <section id="projects-lab">
-                <ProjectGrid />
-              </section> */}
 
               {/* 4: Contact / CTA */}
               <section id="contact">
-                <CtaBlock />
+                <CtaBlock data={data.ctaData} />
               </section>
 
               {/* 5: Experience */}
               <section id="experience">
-                <WorkHistory />
+                <WorkHistory data={data.experienceData} />
               </section>
 
               {/* 6: Validation */}
               <section id="validation">
-                <ValidationLogs />
+                <ValidationLogs data={data.validationData} />
               </section>
 
               {/* 7: Footer */}
               <section id="footer-section">
-                <Footer />
+                <Footer data={data.footerData} />
               </section>
             </ParallaxContainer>
           </motion.div>
@@ -99,4 +92,3 @@ export default function Home() {
     </>
   );
 }
-

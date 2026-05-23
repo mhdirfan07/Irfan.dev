@@ -4,7 +4,13 @@ import { Share2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { StaggerContainer, StaggerItem } from "./AnimationHelpers";
 
-export default function Hero() {
+type HeroProps = {
+  data: any;
+};
+
+export default function Hero({ data }: HeroProps) {
+  const titleLeft = data?.heroTitleLeft || "PORT";
+  const titleRight = data?.heroTitleRight || "FOLIO";
   return (
     <section className="flex flex-col border-b border-[var(--color-border)]">
       {/* Top Huge Text */}
@@ -15,7 +21,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
           >
-            PORT
+            {titleLeft}
           </motion.span>
           <motion.span
             className="mx-4 md:mx-8 h-[10vw] w-px bg-[var(--color-border)]"
@@ -28,7 +34,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
           >
-            FOLIO
+            {titleRight}
           </motion.span>
         </div>
       </div>

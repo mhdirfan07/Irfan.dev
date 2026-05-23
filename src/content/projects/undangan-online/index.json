@@ -1,0 +1,10 @@
+{
+  "title": "Undangan Online",
+  "description": "Membuat website undangan online yang dirancang dengan tampilan modern dan responsif untuk memudahkan pengguna dalam membagikan informasi acara secara digital, praktis, dan efisien.",
+  "coverImage": "/images/projects/undangan-online/coverImage.png",
+  "category": "WEB",
+  "techStack": [
+    "REACT.JS",
+    "FIREBASE"
+  ]
+}

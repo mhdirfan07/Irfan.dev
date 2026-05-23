@@ -1,0 +1,9 @@
+{
+  "title": "KUEID",
+  "description": "Aplikasi mobile pendeteksi berbagai jenis kue yang dikembangkan menggunakan Kotlin. Aplikasi ini dirancang untuk membantu pengguna mengenali jenis kue melalui proses deteksi secara cepat dan interaktif dengan antarmuka yang modern dan mudah digunakan.",
+  "repoUrl": "https://github.com/mhdirfan07/android-app-detection",
+  "category": "MOBILE",
+  "techStack": [
+    "KOTLIN"
+  ]
+}

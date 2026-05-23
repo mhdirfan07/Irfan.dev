@@ -1,0 +1,34 @@
+{
+  "logs": [
+    {
+      "date": "2024",
+      "name": "BANGKIT_ACADEMY",
+      "quote": "Cloud Computing Cohort 2024",
+      "icon": "Cloud"
+    },
+    {
+      "date": "2023 - 2024",
+      "name": "CODINGCAMP_DBS",
+      "quote": "Frontend & Backend Developer Cohort (powered by DBS Foundation)",
+      "icon": "Code"
+    },
+    {
+      "date": "2024",
+      "name": "COLORADO_COURSE",
+      "quote": "Computer Technician Trainees in 2024",
+      "icon": "Wrench"
+    },
+    {
+      "date": "2023",
+      "name": "UNIV_BENGKULU",
+      "quote": "Framework-based Project Assistant Lecturer",
+      "icon": "BookOpen"
+    },
+    {
+      "date": "2023",
+      "name": "UNIV_BENGKULU",
+      "quote": "Operating System Assistant Lecturer",
+      "icon": "Terminal"
+    }
+  ]
+}

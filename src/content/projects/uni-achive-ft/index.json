@@ -1,0 +1,12 @@
+{
+  "title": "UniAchive.FT",
+  "description": "Proyek ini merupakan tugas mata kuliah PPL (Pemrograman Perangkat Lunak) berupa pembuatan website pendataan mahasiswa berprestasi di Fakultas Teknik Universitas Bengkulu. Website ini bertujuan untuk memudahkan pengelolaan, pencarian, dan publikasi data prestasi mahasiswa secara terstruktur dan terintegrasi.",
+  "coverImage": "/images/projects/uni-achive-ft/coverImage.png",
+  "repoUrl": "https://github.com/mhdirfan07/PrestasiFTUnib",
+  "category": "WEB",
+  "techStack": [
+    "LARAVEL",
+    "LIVEWIRE",
+    "PHP"
+  ]
+}

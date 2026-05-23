@@ -1,0 +1,11 @@
+{
+  "title": "È-Iqro",
+  "description": "Project E-Iqro merupakan aplikasi Mobile pendeteksi huruf hijaiyah yang dikembangkan dalam program Bangkit Academy. Dalam proyek ini, saya berperan sebagai Cloud Computing Cohort yang bertanggung jawab mengembangkan API serta mengintegrasikan layanan backend agar aplikasi dapat berjalan secara optimal dan terhubung dengan sistem machine learning.",
+  "coverImage": "/images/projects/e-iqro/coverImage.png",
+  "repoUrl": "https://github.com/E-IQRA/model-API",
+  "category": "MOBILE",
+  "techStack": [
+    "Flask",
+    "Python"
+  ]
+}

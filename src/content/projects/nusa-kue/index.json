@@ -1,0 +1,12 @@
+{
+  "title": "NusaKue",
+  "description": "Project NusaKue merupakan aplikasi web yang digunakan untuk mendeteksi berbagai makanan tradisional Indonesia. Proyek ini dikembangkan dalam program Coding Camp powered by DBS Foundation, di mana saya tergabung sebagai Fullstack Developer Cohort. Dalam proyek ini, saya bertanggung jawab sebagai Frontend Developer yang berfokus pada pengembangan antarmuka website agar interaktif, responsif, dan mudah digunakan.",
+  "coverImage": "/images/projects/nusa-kue/coverImage.png",
+  "link": "https://nusa-kue.vercel.app/",
+  "repoUrl": "https://github.com/NusaKue/NusaKue",
+  "category": "WEB",
+  "techStack": [
+    "React.JS",
+    "Tailwind CSS"
+  ]
+}

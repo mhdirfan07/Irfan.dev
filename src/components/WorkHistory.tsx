@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "./AnimationHelpers";
 
-export default function WorkHistory() {
-  const roles = [
+export default function WorkHistory({ data }: { data: any[] }) {
+  const defaultRoles = [
     {
       period: "2024 - PRESENT",
       company: "ARANUS_TECH",
@@ -21,6 +21,8 @@ export default function WorkHistory() {
       current: true,
     },
   ];
+
+  const displayRoles = data && data.length > 0 ? data : defaultRoles;
 
   return (
     <section className="flex flex-col border-b border-[var(--color-border)] bg-[var(--color-background)]">
@@ -39,7 +41,7 @@ export default function WorkHistory() {
 
       {/* Grid */}
       <StaggerContainer className="grid grid-cols-1 bento-grid" delay={0.1}>
-        {roles.map((role, idx) => (
+        {displayRoles.map((role, idx) => (
           <StaggerItem key={idx}>
             <motion.div
               className="bento-cell p-8 flex flex-col md:flex-row gap-8 justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)]"

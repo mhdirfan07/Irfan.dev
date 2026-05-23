@@ -4,8 +4,8 @@ import { Cloud, Code, Wrench, BookOpen, Terminal } from "lucide-react";
 import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "./AnimationHelpers";
 
-export default function ValidationLogs() {
-  const validations = [
+export default function ValidationLogs({ data }: { data: any }) {
+  const defaultValidations = [
     {
       id: "VAL_01",
       date: "2024",
@@ -43,6 +43,20 @@ export default function ValidationLogs() {
     }
   ];
 
+  const validations = data?.logs && data.logs.length > 0 
+    ? data.logs.map((log: any, idx: number) => ({
+        id: `VAL_0${idx + 1}`,
+        date: log.date || "2024",
+        name: log.name || "UNKNOWN_CREDENTIAL",
+        quote: log.quote || "",
+        icon: log.icon === "Code" ? <Code className="w-5 h-5" strokeWidth={1.5} /> :
+              log.icon === "Wrench" ? <Wrench className="w-5 h-5" strokeWidth={1.5} /> :
+              log.icon === "BookOpen" ? <BookOpen className="w-5 h-5" strokeWidth={1.5} /> :
+              log.icon === "Terminal" ? <Terminal className="w-5 h-5" strokeWidth={1.5} /> :
+              <Cloud className="w-5 h-5" strokeWidth={1.5} />
+      }))
+    : defaultValidations;
+
   return (
     <section className="flex flex-col border-b border-[var(--color-border)]">
       {/* Header */}
@@ -59,7 +73,7 @@ export default function ValidationLogs() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                05
+                {validations.length.toString().padStart(2, '0')}
               </motion.span>
             </div>
             <div className="flex flex-col text-right">
