@@ -57,11 +57,11 @@ export default function AboutSection({ data }: { data: any }) {
   const role = safeData.role || "> SOFTWARE_ENGINEER / FULL_STACK_DEVELOPER";
   const description = safeData.description || "An Informatics alumnus from the University of Bengkulu and a passionate Software Engineer with 1–2 years of hands-on experience building scalable web applications, and cloud-integrated systems. Currently contributing as a part-time engineer at Aranus Tech / Perseverance Tech, focused on delivering high-quality, performant solutions across the full development stack.";
   const profileImage = safeData.profileImage || "images/profile3.png";
-  
+
   const displaySpecializations = safeData.specializations || specializations;
   const displayStats = safeData.stats || [
     { label: "YEARS_EXP", value: "1-2" },
-    { label: "PROJECTS", value: "10+" },
+    { label: "PROJECTS", value: "6" },
     { label: "FOCUS", value: "FULL_STK" },
   ];
   const displaySkills = safeData.skills || skills;
@@ -88,9 +88,9 @@ export default function AboutSection({ data }: { data: any }) {
         {/* Bio Cell — spans 2 cols */}
         <FadeIn direction="left" className="lg:col-span-2">
           <div className="bento-cell bg-[var(--color-surface)] relative overflow-hidden p-8 md:p-12 flex flex-col justify-between h-full border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
-            
+
             {/* Background Profile Image */}
-            <div 
+            <div
               className="absolute inset-y-0 right-0 w-[90%] md:w-[60%] pointer-events-none z-0 grayscale opacity-30 dark:opacity-20"
               style={{
                 backgroundImage: `url('${profileImage}')`,
@@ -170,21 +170,21 @@ export default function AboutSection({ data }: { data: any }) {
                   >
                     <span className="text-[var(--color-accent)]">
                       {skill.icon === 'Layers' ? <Layers className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Blocks' ? <Blocks className="w-3.5 h-3.5" /> :
-                       skill.icon === 'FileCode' ? <FileCode className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Binary' ? <Binary className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Atom' ? <Atom className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Wind' ? <Wind className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Terminal' ? <Terminal className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Network' ? <Network className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Flame' ? <Flame className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Boxes' ? <Boxes className="w-3.5 h-3.5" /> :
-                       skill.icon === 'GitBranch' ? <GitBranch className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Workflow' ? <Workflow className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Globe' ? <Globe className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Cloud' ? <Cloud className="w-3.5 h-3.5" /> :
-                       skill.icon === 'Code2' ? <Code2 className="w-3.5 h-3.5" /> :
-                       <Cpu className="w-3.5 h-3.5" />}
+                        skill.icon === 'Blocks' ? <Blocks className="w-3.5 h-3.5" /> :
+                          skill.icon === 'FileCode' ? <FileCode className="w-3.5 h-3.5" /> :
+                            skill.icon === 'Binary' ? <Binary className="w-3.5 h-3.5" /> :
+                              skill.icon === 'Atom' ? <Atom className="w-3.5 h-3.5" /> :
+                                skill.icon === 'Wind' ? <Wind className="w-3.5 h-3.5" /> :
+                                  skill.icon === 'Terminal' ? <Terminal className="w-3.5 h-3.5" /> :
+                                    skill.icon === 'Network' ? <Network className="w-3.5 h-3.5" /> :
+                                      skill.icon === 'Flame' ? <Flame className="w-3.5 h-3.5" /> :
+                                        skill.icon === 'Boxes' ? <Boxes className="w-3.5 h-3.5" /> :
+                                          skill.icon === 'GitBranch' ? <GitBranch className="w-3.5 h-3.5" /> :
+                                            skill.icon === 'Workflow' ? <Workflow className="w-3.5 h-3.5" /> :
+                                              skill.icon === 'Globe' ? <Globe className="w-3.5 h-3.5" /> :
+                                                skill.icon === 'Cloud' ? <Cloud className="w-3.5 h-3.5" /> :
+                                                  skill.icon === 'Code2' ? <Code2 className="w-3.5 h-3.5" /> :
+                                                    <Cpu className="w-3.5 h-3.5" />}
                     </span>
                     <span className="text-[var(--color-foreground)] font-bold">{skill.name}</span>
                   </motion.div>

@@ -35,7 +35,7 @@ export default function Header() {
       {/* Logo */}
       <div className="flex items-center">
         <Image
-          src="/Icon.svg" // Pastikan file ada di public/icon.svg
+          src="/Icon.svg"
           alt="Logo Irfn.dev"
           width={32}
           height={32}

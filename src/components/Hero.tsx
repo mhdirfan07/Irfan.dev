@@ -1,8 +1,11 @@
 "use client";
 
-import { Share2 } from "lucide-react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { Share2, ArrowUpRight, Activity } from "lucide-react"; // Tambahkan icon baru
 import { StaggerContainer, StaggerItem } from "./AnimationHelpers";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useParallax } from "./ParallaxContainer";
 
 type HeroProps = {
   data: any;
@@ -11,11 +14,14 @@ type HeroProps = {
 export default function Hero({ data }: HeroProps) {
   const titleLeft = data?.heroTitleLeft || "PORT";
   const titleRight = data?.heroTitleRight || "FOLIO";
+  const { goToSection } = useParallax();
+
   return (
     <section className="flex flex-col border-b border-[var(--color-border)]">
-      {/* Top Huge Text */}
-      <div className="flex w-full items-center justify-center border-b border-[var(--color-border)] py-16 md:py-24 lg:py-32 overflow-hidden bg-[var(--color-surface)]">
-        <div className="flex items-center text-[12vw] font-bold leading-none tracking-tighter">
+      {/* Top Huge Text (Tetap Sama) */}
+      <div className="flex w-full items-center justify-center border-b border-[var(--color-border)] py-16 md:py-24 lg:py-32 overflow-hidden bg-[var(--color-surface)] relative">
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5 pointer-events-none"></div>
+        <div className="flex items-center text-[12vw] font-bold leading-none tracking-tighter relative z-10">
           <motion.span
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
@@ -39,80 +45,94 @@ export default function Hero({ data }: HeroProps) {
         </div>
       </div>
 
-      {/* 3 Bento Cells Row */}
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 bento-grid" delay={0.2}>
-        {/* Cell 1 */}
-        <StaggerItem>
-          <div className="bento-cell p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[var(--color-border)] bg-[var(--color-surface)] h-64">
-            <div>
-              <p className="font-mono text-xs text-[var(--color-muted)] mb-4 uppercase tracking-widest">
-                // MISSION_LOG
+      {/* NEW ASYMMETRICAL BENTO GRID */}
+      <StaggerContainer className="grid grid-cols-1 lg:grid-cols-12 auto-rows-[minmax(12rem,auto)] bento-grid" delay={0.2}>
+
+        {/* Cell 1: Info Box (Span 7 columns) */}
+        <StaggerItem className="lg:col-span-7 border-b lg:border-b-0 lg:border-r border-[var(--color-border)]">
+          <div className="bento-cell p-8 flex flex-col justify-between bg-[var(--color-surface)] h-full min-h-[16rem]">
+            <div className="flex justify-between items-start">
+              <p className="font-mono text-xs text-[var(--color-muted)] uppercase tracking-widest flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse"></span>
+                SYSTEM_STATUS: ONLINE
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold uppercase leading-tight">
-                Meet Our Recent<br />Projects
-              </h2>
+              <Activity className="w-5 h-5 text-[var(--color-muted)]" />
             </div>
+
             <div className="mt-8">
-              <motion.div
-                className="inline-block border border-[var(--color-border)] px-4 py-2 font-mono text-xs font-bold bg-[var(--color-background)]"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.2 }}
-              >
-                PROJECTS_COMPLETED: 10+
-              </motion.div>
-            </div>
-          </div>
-        </StaggerItem>
-
-        {/* Cell 2 */}
-        <StaggerItem>
-          <div className="bento-cell p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-[var(--color-border)] bg-[var(--color-surface)] h-64 relative">
-            <motion.div
-              className="w-24 h-24 border border-[var(--color-border)] flex items-center justify-center relative"
-              animate={{ rotate: [0, 2, -2, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="absolute inset-0 border border-[var(--color-border)] -translate-x-2 -translate-y-2"></div>
-              <Share2 className="w-8 h-8 text-[var(--color-foreground)] relative z-10" strokeWidth={1} />
-            </motion.div>
-          </div>
-        </StaggerItem>
-
-        {/* Cell 3 */}
-        <StaggerItem>
-          <div className="bento-cell p-8 flex flex-col justify-between bg-[var(--color-surface)] h-64">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <motion.span
-                  className="bg-[var(--color-accent)] text-white font-mono text-[10px] font-bold uppercase px-2 py-1 tracking-wider"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  NEW_RELEASE
-                </motion.span>
-                <span className="font-mono text-[10px] text-[var(--color-muted)]">
-                  REF: 001.C
-                </span>
-              </div>
-              <h2 className="text-2xl font-bold uppercase leading-tight">
-                Microservice<br />Architecture
+              <h2 className="text-3xl md:text-5xl font-bold uppercase leading-tight mb-6">
+                SOFTWARE<br />
+                <span className="text-[var(--color-muted)]">ENGINEER</span>
               </h2>
-            </div>
 
-            <div className="grid grid-cols-3 gap-4 border-t border-[var(--color-border)] pt-4 mt-4">
-              {[
-                { label: "Perf", value: "98%", color: "" },
-                { label: "Eff", value: "89%", color: "" },
-                { label: "Scale", value: "HIGH", color: "text-[var(--color-accent)]" },
-              ].map((item) => (
-                <div key={item.label} className="flex flex-col">
-                  <span className="font-mono text-[10px] text-[var(--color-muted)] uppercase">{item.label}</span>
-                  <span className={`font-bold font-mono ${item.color}`}>{item.value}</span>
+              <div className="flex flex-wrap gap-2">
+                <motion.button
+                  onClick={() => goToSection(2)}
+                  className="inline-flex items-center gap-2 border border-[var(--color-border)] px-4 py-2 font-mono text-xs bg-[var(--color-background)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] transition-colors cursor-pointer"
+                  whileHover={{ y: -2 }}
+                >
+                  EXPLORE PROJECTS <ArrowUpRight className="w-3 h-3" />
+                </motion.button>
+                <div className="inline-flex items-center px-4 py-2 font-mono text-xs border border-transparent text-[var(--color-muted)]">
+                  BASED_IN: BENGKULU
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </StaggerItem>
+
+        {/* Right Column Stack (Span 5 columns) */}
+        <div className="lg:col-span-5 grid grid-rows-2">
+
+          {/* Cell 2: Top Right (Pixel Art Animation) */}
+          <StaggerItem className="border-b border-[var(--color-border)]">
+            <div className="bento-cell p-0 flex items-center justify-between bg-[var(--color-background)] h-full overflow-hidden relative group">
+              <div className="p-6 z-10">
+                <p className="font-mono text-[10px] text-[var(--color-muted)] uppercase mb-2">Initialize</p>
+                <p className="font-bold uppercase tracking-wider text-sm">Visual_Interface</p>
+              </div>
+
+              {/* Pixel Art Container - Di dorong ke kanan */}
+              <div className="relative w-32 h-32 mr-8 group-hover:scale-110 transition-transform duration-500">
+                <DotLottieReact
+                  src="https://lottie.host/e2f33133-300f-4107-ad08-43a5f71d7070/DNqMpLaIpe.lottie"
+                  loop
+                  autoplay
+                  speed={0.5}
+                />
+              </div>
+
+              {/* Decorative Diagonal Lines */}
+              <div className="absolute right-0 top-0 bottom-0 w-48 opacity-10 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, var(--color-foreground) 0, var(--color-foreground) 1px, transparent 0, transparent 50%)', backgroundSize: '10px 10px' }}></div>
+            </div>
+          </StaggerItem>
+
+          {/* Cell 3: Bottom Right (Data / Metrics) */}
+          <StaggerItem>
+            <div className="bento-cell p-6 flex flex-col justify-center bg-[var(--color-surface)] h-full">
+              <div className="flex items-center justify-between mb-6">
+                <span className="font-mono text-[10px] border border-[var(--color-foreground)] px-2 py-1 uppercase font-bold">
+                  METRICS_LOG
+                </span>
+                <Share2 className="w-4 h-4 text-[var(--color-muted)] hover:text-[var(--color-foreground)] cursor-pointer transition-colors" />
+              </div>
+
+             <div className="grid grid-cols-3 gap-2">
+                {[
+                  { label: "DEV", value: "ACTV" },
+                  { label: "SYS", value: "APP" },
+                  { label: "LOC", value: "BKS" },
+                ].map((item, i) => (
+                  <div key={i} className="border border-[var(--color-border)] p-3 flex flex-col items-center justify-center bg-[var(--color-background)] hover:border-[var(--color-foreground)] transition-colors">
+                    <span className="font-mono text-[10px] text-[var(--color-muted)] mb-1">{item.label}</span>
+                    <span className="font-bold font-mono text-lg">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </StaggerItem>
+
+        </div>
       </StaggerContainer>
     </section>
   );

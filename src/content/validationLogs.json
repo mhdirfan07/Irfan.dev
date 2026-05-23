@@ -1,16 +1,16 @@
 {
   "logs": [
     {
+      "date": "2025",
+      "name": "CODINGCAMP_DBS",
+      "quote": "Frontend & Backend Developer Cohort (powered by DBS Foundation)",
+      "icon": "Code"
+    },
+    {
       "date": "2024",
       "name": "BANGKIT_ACADEMY",
       "quote": "Cloud Computing Cohort 2024",
       "icon": "Cloud"
-    },
-    {
-      "date": "2023 - 2024",
-      "name": "CODINGCAMP_DBS",
-      "quote": "Frontend & Backend Developer Cohort (powered by DBS Foundation)",
-      "icon": "Code"
     },
     {
       "date": "2024",
