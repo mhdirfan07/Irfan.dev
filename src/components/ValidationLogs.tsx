@@ -100,7 +100,7 @@ export default function ValidationLogs({ data }: { data: any }) {
         <div className="absolute left-1/2 -translate-x-1/2 hidden md:block top-12 bottom-12 w-[1px] bg-[var(--color-border)] z-0" />
 
         <StaggerContainer className="flex flex-col w-full relative z-10" delay={0.1}>
-          {validations.map((val, index) => {
+          {validations.map((val: any, index: number) => {
             const isLeft = index % 2 === 0; // True untuk genap (Kiri), False untuk ganjil (Kanan)
 
             return (

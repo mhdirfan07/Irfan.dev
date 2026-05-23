@@ -73,7 +73,7 @@ export default function WorkHistory({ data }: { data: any[] }) {
                 <p className="font-mono text-xs text-[var(--color-muted)] uppercase mb-6">{role.title}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {role.tags.map((tag) => (
+                  {role.tags.map((tag: string) => (
                     <motion.span
                       key={tag}
                       className="font-mono text-[10px] border border-[var(--color-border)] px-2 py-1 uppercase text-[var(--color-muted)] bg-[var(--color-background)]"
@@ -92,7 +92,7 @@ export default function WorkHistory({ data }: { data: any[] }) {
                   // PERFORMANCE_LOG
                 </p>
                 <div className="bg-black text-green-500 p-4 font-mono text-[10px] leading-relaxed uppercase">
-                  {role.logs.map((log, i) => (
+                  {role.logs.map((log: string, i: number) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0 }}

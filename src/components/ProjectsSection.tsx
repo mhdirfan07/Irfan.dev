@@ -23,6 +23,8 @@ export default function ProjectsSection({ data }: { data: any[] }) {
     title: p.title || "UNTITLED_PROJECT",
     description: p.description || "",
     coverImage: p.coverImage,
+    link: p.link || "",
+    repoUrl: p.repoUrl || "",
     category: (p.category as CategoryKey) || "WEB",
     tags: p.techStack || [],
     status: "LIVE",
@@ -123,7 +125,7 @@ export default function ProjectsSection({ data }: { data: any[] }) {
                 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 mt-4">
-                  {project.tags.map((tag) => (
+                  {project.tags.map((tag: string) => (
                     <span key={tag} className="font-mono text-[9px] border border-[var(--color-border)] px-1.5 py-0.5 uppercase text-[var(--color-muted)] group-hover:border-[var(--color-foreground)] group-hover:text-[var(--color-foreground)] transition-colors duration-300">
                       {tag}
                     </span>
