@@ -16,6 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "PORT | FOLIO — Irfn.dev",
   description: "Muhammad Irfan — Software Engineer Portfolio",
+  icons: {  
+    icon: '/favicon.ico', // Memanggil dari folder public
+  },
 };
 
 export default function RootLayout({
