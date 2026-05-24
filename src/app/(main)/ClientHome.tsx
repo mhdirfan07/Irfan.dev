@@ -17,9 +17,9 @@ const SECTIONS = [
   { id: "hero", label: "HERO" },
   { id: "about", label: "ABOUT" },
   { id: "projects", label: "PROJECTS" },
-  { id: "contact", label: "CONTACT" },
   { id: "experience", label: "EXPERIENCE" },
   { id: "validation", label: "VALIDATION" },
+  { id: "contact", label: "CONTACT" },
   { id: "footer", label: "FOOTER" },
 ];
 
@@ -51,37 +51,32 @@ export default function ClientHome({ data }: { data: any }) {
           >
             <Header />
             <ParallaxContainer sections={SECTIONS}>
-              {/* 0: Hero */}
+           
               <section id="hero">
                 <Hero data={data.heroData} />
               </section>
-
-              {/* 1: About */}
+             
               <section id="about">
                 <AboutSection data={data.aboutData} />
               </section>
-
-              {/* 2: Projects */}
+             
               <section id="projects">
                 <ProjectsSection data={data.projectsData} />
               </section>
-
-              {/* 4: Contact / CTA */}
-              <section id="contact">
-                <CtaBlock data={data.ctaData} />
-              </section>
-
-              {/* 5: Experience */}
+           
               <section id="experience">
                 <WorkHistory data={data.experienceData} />
               </section>
-
-              {/* 6: Validation */}
+              
               <section id="validation">
                 <ValidationLogs data={data.validationData} />
               </section>
 
-              {/* 7: Footer */}
+              <section id="contact">
+                <CtaBlock data={data.ctaData} />
+              </section>
+
+              
               <section id="footer-section">
                 <Footer data={data.footerData} />
               </section>

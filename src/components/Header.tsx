@@ -4,22 +4,8 @@ import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { useParallax } from "./ParallaxContainer";
 import Image from 'next/image';
-// Maps section index to which nav link should be active
-const SECTION_TO_NAV: Record<number, number> = {
-  0: 1, // Hero → highlight About
-  1: 1, // About
-  2: 2, // Projects
-  3: 2, // Projects Lab → highlight Projects
-  4: 4, // Contact
-  5: 5, // Experience
-  6: 5, // Validation → highlight Experience
-  7: 5, // Footer → highlight Experience
-};
 
 export default function Header() {
-  const { currentSection, goToSection } = useParallax();
-
-  const activeNavIndex = SECTION_TO_NAV[currentSection] ?? 1;
 
   return (
     <motion.header
@@ -42,7 +28,6 @@ export default function Header() {
           className="mr-1"
         />
         <button
-          onClick={() => goToSection(0)}
           className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity text-[var(--color-foreground)]"
         >
           Irfn.dev
@@ -52,16 +37,7 @@ export default function Header() {
       {/* Right: Theme Toggle + CTA */}
       <div className="flex items-center gap-3">
         <ThemeToggle />
-        <motion.button
-          onClick={() => goToSection(4)}
-          className="bg-[var(--color-accent)] text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 cursor-pointer"
-          whileHover={{ scale: 1.05, opacity: 0.9 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.15 }}
-        >
-          CONTACT ME
-        </motion.button>
-      </div>
+       </div>
     </motion.header>
   );
 }

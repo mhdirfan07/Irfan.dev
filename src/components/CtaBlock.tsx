@@ -1,13 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Download, Send, Globe, Cpu, Clock, Terminal } from "lucide-react";
+import { useState } from "react";
+import { motion,AnimatePresence } from "framer-motion";
+import {X, Download, Send, Loader2, CheckCircle2, AlertCircle, Terminal } from "lucide-react";
 import { FadeIn } from "./AnimationHelpers";
 
 export default function CtaBlock({ data }: { data: any }) {
   const heading = data?.heading || "READY TO DISCUSS\nYOUR PROJECT?";
   const email = data?.email || "mhdirfan1537@gmail.com";
   const buttonText = data?.buttonText || "SEND_EMAIL";
+
+  // State untuk Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    const formData = new FormData(e.currentTarget);
+    const formValues = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formValues),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        // Tutup modal otomatis setelah 2 detik jika sukses
+        setTimeout(() => {
+          setIsModalOpen(false);
+          setStatus("idle");
+        }, 2000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      }
+    } catch (error) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 bento-grid border-b border-[var(--color-border)] h-full">
@@ -44,10 +84,17 @@ export default function CtaBlock({ data }: { data: any }) {
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                 &gt; query --availability
               </div>
-              <div className="text-[var(--color-muted)]">fetching open slots from registry...</div>
-              <div className="text-[var(--color-accent)] font-bold">
-                STATUS: 4 PROJECT SLOTS OPEN FOR THIS QUARTER
-              </div>
+              <div className="text-[var(--color-muted)]">fetching open project from registry...</div>
+              <motion.div
+                className="text-[var(--color-accent)] font-bold"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{
+                  duration: 2.5, // Kecepatan 1 detik per siklus
+                  repeat: Infinity, // Berkedip selamanya
+                }}
+              >
+                STATUS: READY TO TAKE ON A PROJECT
+              </motion.div>
             </div>
           </div>
         </div>
@@ -85,7 +132,7 @@ export default function CtaBlock({ data }: { data: any }) {
               {/* Action Buttons */}
               <div className="flex flex-col gap-3.5 mt-2">
                 <motion.a
-                  href={`mailto:${email}`}
+                  onClick={() => setIsModalOpen(true)}
                   className="w-full h-12 bg-[var(--color-accent)] text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-3.5 shadow-sm cursor-pointer"
                   whileHover={{ scale: 1.02, opacity: 0.95 }}
                   whileTap={{ scale: 0.98 }}
@@ -112,6 +159,101 @@ export default function CtaBlock({ data }: { data: any }) {
           </div>
         </div>
       </FadeIn>
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+            {/* Backdrop Gelap/Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)} // Tutup jika klik area luar
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+
+            {/* Kotak Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-lg border border-[var(--color-border)] bg-[var(--color-background)] p-8 shadow-2xl z-10"
+            >
+              {/* Tombol Tutup */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="mb-8">
+                <p className="font-mono text-xs text-[var(--color-accent)] uppercase tracking-widest mb-2">
+                  // SECURE_CHANNEL
+                </p>
+                <h3 className="text-2xl font-bold uppercase leading-tight">
+                  Transmission<br />Protocol
+                </h3>
+              </div>
+
+              {/* Form Input */}
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <div className="flex flex-col gap-2">
+                  <label className="font-mono text-[10px] text-[var(--color-muted)] uppercase">Sender Identity</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="John Doe"
+                    className="border border-[var(--color-border)] bg-[var(--color-surface)] p-3 font-mono text-sm focus:outline-none focus:border-[var(--color-foreground)] transition-colors"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="font-mono text-[10px] text-[var(--color-muted)] uppercase">Return Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="john@example.com"
+                    className="border border-[var(--color-border)] bg-[var(--color-surface)] p-3 font-mono text-sm focus:outline-none focus:border-[var(--color-foreground)] transition-colors"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="font-mono text-[10px] text-[var(--color-muted)] uppercase">Payload Data</label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder="Enter your message here..."
+                    className="border border-[var(--color-border)] bg-[var(--color-surface)] p-3 font-mono text-sm focus:outline-none focus:border-[var(--color-foreground)] transition-colors resize-none"
+                  ></textarea>
+                </div>
+
+                {/* Tombol Submit & Indikator Status */}
+                <div className="mt-4">
+                  <motion.button
+                    type="submit"
+                    disabled={status === "loading" || status === "success"}
+                    className={`w-full border p-4 font-bold font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors
+                      ${status === "success" ? "border-green-500 bg-green-500 text-white" :
+                        status === "error" ? "border-red-500 bg-red-500 text-white" :
+                          "border-[var(--color-foreground)] bg-[var(--color-foreground)] text-[var(--color-background)] hover:bg-transparent hover:text-[var(--color-foreground)]"
+                      } disabled:opacity-80`}
+                    whileTap={status === "idle" ? { scale: 0.98 } : {}}
+                  >
+                    {status === "idle" && <>TRANSMIT <Send className="w-4 h-4" /></>}
+                    {status === "loading" && <>SENDING... <Loader2 className="w-4 h-4 animate-spin" /></>}
+                    {status === "success" && <>DELIVERED <CheckCircle2 className="w-4 h-4" /></>}
+                    {status === "error" && <>FAILED. RETRY <AlertCircle className="w-4 h-4" /></>}
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
