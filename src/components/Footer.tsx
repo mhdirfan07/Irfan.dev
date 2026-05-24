@@ -13,8 +13,6 @@ export default function Footer({ data }: { data: any }) {
   const socialLinks = data?.socialLinks || [
     { label: "GITHUB", url: "https://github.com/mhdirfan07" },
     { label: "LINKEDIN", url: "https://www.linkedin.com/in/muhammad-irfan-0ba9b326b/" },
-    { label: "ABOUT", url: "#about" },
-    { label: "CONTACT", url: "#contact" }
   ];
 
   useEffect(() => {

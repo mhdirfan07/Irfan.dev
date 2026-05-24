@@ -112,7 +112,7 @@ export default function Hero({ data }: HeroProps) {
             <div className="bento-cell p-6 flex flex-col justify-center bg-[var(--color-surface)] h-full">
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-[10px] border border-[var(--color-foreground)] px-2 py-1 uppercase font-bold">
-                  METRICS_LOG
+                  IG: @mhdirfan.n
                 </span>
                 <Share2 className="w-4 h-4 text-[var(--color-muted)] hover:text-[var(--color-foreground)] cursor-pointer transition-colors" />
               </div>

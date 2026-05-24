@@ -2,6 +2,7 @@
   "title": "Undangan Online",
   "description": "Membuat website undangan online yang dirancang dengan tampilan modern dan responsif untuk memudahkan pengguna dalam membagikan informasi acara secara digital, praktis, dan efisien.",
   "coverImage": "/images/projects/undangan-online/coverImage.png",
+  "link": "https://github.com/mhdirfan07/undangan-digital",
   "category": "WEB",
   "techStack": [
     "REACT.JS",

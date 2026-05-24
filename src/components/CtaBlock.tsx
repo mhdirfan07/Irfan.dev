@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion,AnimatePresence } from "framer-motion";
-import {X, Download, Send, Loader2, CheckCircle2, AlertCircle, Terminal } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Download, Send, Loader2, CheckCircle2, AlertCircle, Terminal, FileWarning } from "lucide-react"; // Tambahkan FileWarning
 import { FadeIn } from "./AnimationHelpers";
 
 export default function CtaBlock({ data }: { data: any }) {
@@ -10,9 +10,12 @@ export default function CtaBlock({ data }: { data: any }) {
   const email = data?.email || "mhdirfan1537@gmail.com";
   const buttonText = data?.buttonText || "SEND_EMAIL";
 
-  // State untuk Modal
+  // State untuk Modal Contact Form
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  
+  // State BARU untuk Status CV
+  const [cvStatus, setCvStatus] = useState<"available" | "unavailable">("available");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,7 +37,6 @@ export default function CtaBlock({ data }: { data: any }) {
 
       if (response.ok) {
         setStatus("success");
-        // Tutup modal otomatis setelah 2 detik jika sukses
         setTimeout(() => {
           setIsModalOpen(false);
           setStatus("idle");
@@ -47,6 +49,15 @@ export default function CtaBlock({ data }: { data: any }) {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
     }
+  };
+
+  // Fungsi untuk menangani klik Download CV
+  const handleDownloadCV = () => {
+    setCvStatus("unavailable");
+    // Kembalikan tombol ke keadaan semula setelah 3 detik
+    setTimeout(() => {
+      setCvStatus("available");
+    }, 3000);
   };
 
   return (
@@ -89,8 +100,8 @@ export default function CtaBlock({ data }: { data: any }) {
                 className="text-[var(--color-accent)] font-bold"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{
-                  duration: 2.5, // Kecepatan 1 detik per siklus
-                  repeat: Infinity, // Berkedip selamanya
+                  duration: 2.5,
+                  repeat: Infinity,
                 }}
               >
                 STATUS: READY TO TAKE ON A PROJECT
@@ -142,17 +153,29 @@ export default function CtaBlock({ data }: { data: any }) {
                   <Send className="w-4 h-4" />
                 </motion.a>
 
+                {/* MODIFIKASI TOMBOL DOWNLOAD CV DI SINI */}
                 <motion.button
-                  onClick={() => {
-                    window.open("/cv.pdf", "_blank");
-                  }}
-                  className="w-full h-12 bg-[var(--color-surface)] border-2 border-[var(--color-foreground)] text-[var(--color-foreground)] font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-3.5 cursor-pointer hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] transition-colors"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  onClick={handleDownloadCV}
+                  className={`w-full h-12 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-3.5 cursor-pointer transition-colors border-2
+                    ${cvStatus === "available" 
+                      ? "bg-[var(--color-surface)] border-[var(--color-foreground)] text-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)]"
+                      : "bg-red-500 border-red-500 text-white"
+                    }`}
+                  whileHover={cvStatus === "available" ? { scale: 1.02 } : {}}
+                  whileTap={cvStatus === "available" ? { scale: 0.98 } : {}}
                   transition={{ duration: 0.15 }}
                 >
-                  <span>DOWNLOAD_CV</span>
-                  <Download className="w-4 h-4" />
+                  {cvStatus === "available" ? (
+                    <>
+                      <span>DOWNLOAD_CV</span>
+                      <Download className="w-4 h-4" />
+                    </>
+                  ) : (
+                    <>
+                      <span>ERR: FILE_NOT_FOUND (UPDATING)</span>
+                      <FileWarning className="w-4 h-4" />
+                    </>
+                  )}
                 </motion.button>
               </div>
             </div>
@@ -160,33 +183,29 @@ export default function CtaBlock({ data }: { data: any }) {
         </div>
       </FadeIn>
 
+      {/* ... (Kode AnimatePresence dan Modal Contact form di bawah ini tetap SAMA seperti kode Anda sebelumnya) ... */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            {/* Backdrop Gelap/Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)} // Tutup jika klik area luar
+              onClick={() => setIsModalOpen(false)} 
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
-
-            {/* Kotak Modal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-lg border border-[var(--color-border)] bg-[var(--color-background)] p-8 shadow-2xl z-10"
             >
-              {/* Tombol Tutup */}
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
-
               <div className="mb-8">
                 <p className="font-mono text-xs text-[var(--color-accent)] uppercase tracking-widest mb-2">
                   // SECURE_CHANNEL
@@ -195,8 +214,6 @@ export default function CtaBlock({ data }: { data: any }) {
                   Transmission<br />Protocol
                 </h3>
               </div>
-
-              {/* Form Input */}
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
                   <label className="font-mono text-[10px] text-[var(--color-muted)] uppercase">Sender Identity</label>
@@ -208,7 +225,6 @@ export default function CtaBlock({ data }: { data: any }) {
                     className="border border-[var(--color-border)] bg-[var(--color-surface)] p-3 font-mono text-sm focus:outline-none focus:border-[var(--color-foreground)] transition-colors"
                   />
                 </div>
-
                 <div className="flex flex-col gap-2">
                   <label className="font-mono text-[10px] text-[var(--color-muted)] uppercase">Return Address</label>
                   <input
@@ -219,7 +235,6 @@ export default function CtaBlock({ data }: { data: any }) {
                     className="border border-[var(--color-border)] bg-[var(--color-surface)] p-3 font-mono text-sm focus:outline-none focus:border-[var(--color-foreground)] transition-colors"
                   />
                 </div>
-
                 <div className="flex flex-col gap-2">
                   <label className="font-mono text-[10px] text-[var(--color-muted)] uppercase">Payload Data</label>
                   <textarea
@@ -230,8 +245,6 @@ export default function CtaBlock({ data }: { data: any }) {
                     className="border border-[var(--color-border)] bg-[var(--color-surface)] p-3 font-mono text-sm focus:outline-none focus:border-[var(--color-foreground)] transition-colors resize-none"
                   ></textarea>
                 </div>
-
-                {/* Tombol Submit & Indikator Status */}
                 <div className="mt-4">
                   <motion.button
                     type="submit"
