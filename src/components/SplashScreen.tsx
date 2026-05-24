@@ -101,7 +101,7 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            DEV_LABS / PORTFOLIO_OS v2.4.1
+            IRFN.DEV / PORTFOLIO_OS v1
           </motion.div>
         </motion.div>
       ) : null}
