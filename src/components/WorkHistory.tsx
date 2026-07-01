@@ -6,19 +6,34 @@ import { FadeIn, StaggerContainer, StaggerItem } from "./AnimationHelpers";
 export default function WorkHistory({ data }: { data: any[] }) {
   const defaultRoles = [
     {
-      period: "2024 - PRESENT",
+      period: "JUL 2026 - PRESENT",
+      company: "ARANUS_TECH",
+      subtitle: "/ PERSEVERANCE_TECH",
+      title: "SOFTWARE_ENGINEER (FULL_TIME)",
+      tags: ["C++", "GTK", "LVGL", "NEXT.JS", "REACT", "NODE.JS", "TYPESCRIPT", "TAILWIND"],
+      logs: [
+        "> BUILD DESKTOP APPS",
+        "> BUILT_SCALABLE_WEB_APPS: PRODUCTION",
+        "> FULLSTACK_DELIVERY: CONSISTENT",
+        "> CLOUD_INTEGRATION: ACTIVE"
+      ],
+      exp: "02",
+      current: true,
+    },
+    {
+      period: "FEB 2024 - JUL 2026",
       company: "ARANUS_TECH",
       subtitle: "/ PERSEVERANCE_TECH",
       title: "SOFTWARE_ENGINEER (PART_TIME)",
-      tags: ["C++", "GTK", "LVGL" ,"NEXT.JS", "REACT", "NODE.JS", "TYPESCRIPT", "TAILWIND"],
+      tags: ["C++", "GTK", "LVGL", "NEXT.JS", "REACT", "NODE.JS", "TYPESCRIPT", "TAILWIND"],
       logs: [
-        "> BUILD DESTOP APPS",
+        "> BUILD DESKTOP APPS",
         "> BUILT_SCALABLE_WEB_APPS: PRODUCTION",
         "> FULLSTACK_DELIVERY: CONSISTENT",
         "> CLOUD_INTEGRATION: ACTIVE"
       ],
       exp: "01",
-      current: true,
+      current: false,
     },
   ];
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, Send, Loader2, CheckCircle2, AlertCircle, Terminal, FileWarning } from "lucide-react"; // Tambahkan FileWarning
+import { X, Download, Send, Loader2, CheckCircle2, AlertCircle, Terminal } from "lucide-react";
 import { FadeIn } from "./AnimationHelpers";
 
 export default function CtaBlock({ data }: { data: any }) {
@@ -14,9 +14,6 @@ export default function CtaBlock({ data }: { data: any }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   
-  // State BARU untuk Status CV
-  const [cvStatus, setCvStatus] = useState<"available" | "unavailable">("available");
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
@@ -49,15 +46,6 @@ export default function CtaBlock({ data }: { data: any }) {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
     }
-  };
-
-  // Fungsi untuk menangani klik Download CV
-  const handleDownloadCV = () => {
-    setCvStatus("unavailable");
-    // Kembalikan tombol ke keadaan semula setelah 3 detik
-    setTimeout(() => {
-      setCvStatus("available");
-    }, 3000);
   };
 
   return (
@@ -153,30 +141,18 @@ export default function CtaBlock({ data }: { data: any }) {
                   <Send className="w-4 h-4" />
                 </motion.a>
 
-                {/* MODIFIKASI TOMBOL DOWNLOAD CV DI SINI */}
-                <motion.button
-                  onClick={handleDownloadCV}
-                  className={`w-full h-12 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-3.5 cursor-pointer transition-colors border-2
-                    ${cvStatus === "available" 
-                      ? "bg-[var(--color-surface)] border-[var(--color-foreground)] text-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)]"
-                      : "bg-red-500 border-red-500 text-white"
-                    }`}
-                  whileHover={cvStatus === "available" ? { scale: 1.02 } : {}}
-                  whileTap={cvStatus === "available" ? { scale: 0.98 } : {}}
+                {/* TOMBOL DOWNLOAD CV */}
+                <motion.a
+                  href="/Muhammad_Irfan_Resume.pdf"
+                  download="Muhammad_Irfan_Resume.pdf"
+                  className="w-full h-12 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-3.5 cursor-pointer transition-colors border-2 bg-[var(--color-surface)] border-[var(--color-foreground)] text-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)]"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
-                  {cvStatus === "available" ? (
-                    <>
-                      <span>DOWNLOAD_CV</span>
-                      <Download className="w-4 h-4" />
-                    </>
-                  ) : (
-                    <>
-                      <span>ERR: FILE_NOT_FOUND (UPDATING)</span>
-                      <FileWarning className="w-4 h-4" />
-                    </>
-                  )}
-                </motion.button>
+                  <span>DOWNLOAD_CV</span>
+                  <Download className="w-4 h-4" />
+                </motion.a>
               </div>
             </div>
           </div>
