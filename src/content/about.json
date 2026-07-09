@@ -3,16 +3,12 @@
   "status": "STATUS: AVAILABLE_FOR_HIRE",
   "name": "MUHAMMAD\nIRFAN",
   "role": "> SOFTWARE_ENGINEER / FULL_STACK_DEVELOPER",
-  "description": "An Informatics alumnus from the University of Bengkulu and a passionate Software Engineer with 1–2 years of hands-on experience building scalable web applications, and cloud-integrated systems. Currently contributing as a Full-Time engineer at Aranus Tech / Perseverance Tech, focused on delivering high-quality, performant solutions across the full development stack.",
+  "description": "Passionate Software Engineer and Informatics graduate with 1–2 years of experience in full-stack development and cloud computing. Currently working full-time at Perseverance Technology Indonesia to deliver high-quality, scalable, and performant web applications.\n\n​Graduate of Bangkit Academy and DBS Foundation Coding Camp. Always eager to build robust architectures and explore new technologies.",
   "profileImage": "/images/profileImage.jpeg",
   "specializations": [
     {
       "label": "WEB_DEV",
       "icon": "Globe"
-    },
-    {
-      "label": "CLOUD_OPS",
-      "icon": "Cloud"
     }
   ],
   "stats": [
@@ -31,32 +27,24 @@
   ],
   "skills": [
     {
-      "name": "C++",
-      "icon": "Cpu"
-    },
-    {
-      "name": "GTK",
-      "icon": "Layers"
-    },
-    {
-      "name": "LVGL",
-      "icon": "Blocks"
-    },
-    {
-      "name": "HTML / CSS",
-      "icon": "FileCode"
+      "name": "PHP / Laravel",
+      "icon": "Flame"
     },
     {
       "name": "JavaScript",
       "icon": "Code2"
     },
     {
-      "name": "TypeScript",
-      "icon": "Binary"
-    },
-    {
       "name": "React",
       "icon": "Atom"
+    },
+    {
+      "name": "HTML / CSS",
+      "icon": "FileCode"
+    },
+    {
+      "name": "Node.js",
+      "icon": "Terminal"
     },
     {
       "name": "Next.js",
@@ -67,20 +55,28 @@
       "icon": "Wind"
     },
     {
-      "name": "Node.js",
-      "icon": "Terminal"
+      "name": "GTK",
+      "icon": "Layers"
+    },
+    {
+      "name": "LVGL",
+      "icon": "Blocks"
+    },
+    {
+      "name": "C++",
+      "icon": "Cpu"
+    },
+    {
+      "name": "TypeScript",
+      "icon": "Binary"
     },
     {
       "name": "Express",
       "icon": "Cpu"
     },
     {
-      "name": "REST API",
-      "icon": "Network"
-    },
-    {
-      "name": "PHP / Laravel",
-      "icon": "Flame"
+      "name": "Antigravity",
+      "icon": "Cpu"
     },
     {
       "name": "Google Cloud Run",
@@ -95,16 +91,8 @@
       "icon": "Boxes"
     },
     {
-      "name": "Git / GitHub",
-      "icon": "GitBranch"
-    },
-    {
       "name": "CI/CD",
       "icon": "Workflow"
-    },
-    {
-      "name": "Antigravity",
-      "icon": "Cpu"
     }
   ]
 }

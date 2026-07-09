@@ -302,4 +302,20 @@
       width: 2px;
     }
   }
+
+  /* ─── Project Modal Scroll ─────────────────── */
+  .project-modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+  .project-modal-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  .project-modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .project-modal-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 0;
+  }
 }

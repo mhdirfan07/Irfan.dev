@@ -53,7 +53,6 @@ export default config({
                 period: fields.text({ label: 'Period (e.g. 2024 - PRESENT)' }),
                 subtitle: fields.text({ label: 'Subtitle / Additional Company Info' }),
                 title: fields.text({ label: 'Job Title' }),
-                exp: fields.text({ label: 'Years of Experience (e.g. 01)' }),
                 current: fields.checkbox({ label: 'Is Current Job?' }),
                 tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tags / Tech Stack', itemLabel: props => props.value }),
                 logs: fields.array(fields.text({ label: 'Log Entry' }), { label: 'Performance Logs', itemLabel: props => props.value }),

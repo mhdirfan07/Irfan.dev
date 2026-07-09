@@ -17,7 +17,6 @@ export default function WorkHistory({ data }: { data: any[] }) {
         "> FULLSTACK_DELIVERY: CONSISTENT",
         "> CLOUD_INTEGRATION: ACTIVE"
       ],
-      exp: "02",
       current: true,
     },
     {
@@ -32,12 +31,34 @@ export default function WorkHistory({ data }: { data: any[] }) {
         "> FULLSTACK_DELIVERY: CONSISTENT",
         "> CLOUD_INTEGRATION: ACTIVE"
       ],
-      exp: "01",
+
       current: false,
     },
   ];
 
-  const displayRoles = data && data.length > 0 ? data : defaultRoles;
+  // Sort: current jobs first, then by start date descending (newest first)
+  const sortByDate = (roles: any[]) => {
+    const monthMap: Record<string, number> = {
+      JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5,
+      JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11,
+    };
+    return [...roles].sort((a, b) => {
+      // Current jobs always come first
+      if (a.current && !b.current) return -1;
+      if (!a.current && b.current) return 1;
+      // Parse start date from period (e.g. "FEB 2024 - JUL 2026")
+      const parseStart = (period: string) => {
+        const parts = period?.trim().split(/\s+/) || [];
+        const month = monthMap[parts[0]?.toUpperCase()] ?? 0;
+        const year = parseInt(parts[1]) || 0;
+        return year * 12 + month;
+      };
+      return parseStart(b.period) - parseStart(a.period);
+    });
+  };
+
+  const rawRoles = data && data.length > 0 ? data : defaultRoles;
+  const displayRoles = sortByDate(rawRoles);
 
   return (
     <section className="flex flex-col border-b border-[var(--color-border)] bg-[var(--color-background)]">
@@ -54,40 +75,53 @@ export default function WorkHistory({ data }: { data: any[] }) {
         </div>
       </FadeIn>
 
-      {/* Grid */}
+      {/* Timeline Grid */}
       <StaggerContainer className="grid grid-cols-1 bento-grid" delay={0.1}>
         {displayRoles.map((role, idx) => (
           <StaggerItem key={idx}>
             <motion.div
-              className="bento-cell p-8 flex flex-col md:flex-row gap-8 justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)]"
-              whileHover={{ boxShadow: "inset 0 0 0 1px #000" }}
-              transition={{ duration: 0.2 }}
+              className="bento-cell p-8 flex flex-col md:flex-row gap-8 justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)] relative"
+              whileHover={{ backgroundColor: "var(--color-background)" }}
+              transition={{ duration: 0.3 }}
             >
+              {/* Timeline indicator */}
+              <div className="hidden md:flex absolute left-0 top-0 bottom-0 w-8 items-start justify-center pt-10">
+                <div className="flex flex-col items-center h-full">
+                  <div className={`w-2.5 h-2.5 flex-shrink-0 border-2 ${
+                    role.current 
+                      ? 'bg-[var(--color-accent)] border-[var(--color-accent)]' 
+                      : 'bg-transparent border-[var(--color-muted)]'
+                  }`} />
+                  {idx < displayRoles.length - 1 && (
+                    <div className="w-px flex-grow bg-[var(--color-border)] mt-1" />
+                  )}
+                </div>
+              </div>
+
               {/* Left: Info */}
-              <div className="flex-1">
-                <div className="flex items-center gap-4 mb-4">
+              <div className="flex-1 md:pl-6">
+                <div className="flex items-center gap-3 mb-4">
                   <p className="font-mono text-[10px] text-[var(--color-accent)] font-bold uppercase tracking-widest">
-                    // {role.period}
+                    {role.period}
                   </p>
                   {role.current && (
                     <motion.span
-                      className="bg-green-500 text-white font-mono text-[9px] px-2 py-0.5 uppercase"
-                      animate={{ opacity: [1, 0.5, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      className="bg-green-500/90 text-white font-mono text-[9px] px-2 py-0.5 uppercase"
+                      animate={{ opacity: [1, 0.6, 1] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                     >
-                      ACTIVE
+                      CURRENT
                     </motion.span>
                   )}
-                  <span className="font-mono text-[10px] text-[var(--color-muted)]">EXP: {role.exp}</span>
                 </div>
 
                 <h3 className="text-2xl font-bold uppercase tracking-tight mb-0.5">
                   {role.company}
                 </h3>
-                <p className="font-mono text-sm text-[var(--color-muted)] uppercase mb-2">{role.subtitle}</p>
-                <p className="font-mono text-xs text-[var(--color-muted)] uppercase mb-6">{role.title}</p>
+                <p className="font-mono text-sm text-[var(--color-muted)] mb-1">{role.subtitle}</p>
+                <p className="font-mono text-xs text-[var(--color-muted)] uppercase mb-5 opacity-70">{role.title}</p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2">
                   {role.tags.map((tag: string) => (
                     <motion.span
                       key={tag}
@@ -104,9 +138,9 @@ export default function WorkHistory({ data }: { data: any[] }) {
               {/* Right: Performance Log */}
               <div className="md:w-80 flex-shrink-0">
                 <p className="font-mono text-[10px] text-[var(--color-muted)] uppercase mb-2 tracking-widest">
-                  // PERFORMANCE_LOG
+                  // TASK_LOG
                 </p>
-                <div className="bg-black text-green-500 p-4 font-mono text-[10px] leading-relaxed uppercase">
+                <div className="bg-black text-green-500 p-4 font-mono text-[10px] leading-loose uppercase border border-[#1a1a1a]">
                   {role.logs.map((log: string, i: number) => (
                     <motion.div
                       key={i}
@@ -118,6 +152,11 @@ export default function WorkHistory({ data }: { data: any[] }) {
                       {log}
                     </motion.div>
                   ))}
+                  <motion.span
+                    className="inline-block w-1.5 h-3 bg-green-500 ml-1 mt-1"
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+                  />
                 </div>
               </div>
             </motion.div>
